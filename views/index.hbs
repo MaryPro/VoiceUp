@@ -1,0 +1,32 @@
+<div class ="game">
+  <div class="left">
+    <form action="/addName" method="post" id="addName">
+      <p>Enter your name</p> 
+      <input type="text" name="username" class="name">
+      {{!-- <button class = "addNameBtn">Ok</button> --}}
+    </form>
+
+   
+  </div>
+  <section class="gameField">
+
+    <div class="triangle topLine"></div>
+    <div class="square firstLine"></div>
+    <div class="square secondLine"></div>
+    <div class="square thirdLine"></div>
+    <div class="triangle botLine"></div>
+
+  </section>
+  <div class="right">
+    <p>Leader Board</p>
+      <p class="leaderUser"> Name - Score</p>
+    <ol class="leaderBoard">
+    {{#each leaderBoard}}
+      <li class="leaderUser"> {{this.username}} - {{this.score}}</li>
+    {{/each}}
+    </ol>
+  </div>
+</div>
+
+  <input id="startBtn" type="button" value="Start">
+</div>
