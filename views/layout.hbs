@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 
   <!-- Compiled and minified CSS -->
- 
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   {{!-- <link rel="stylesheet" href="/css/style.css"> --}}
@@ -23,29 +23,31 @@
 </head>
 
 <body>
-  
-<nav class="center-align">
+
+  <nav class="center-align">
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo">VoiceUp</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
-</nav>
+  </nav>
 
   <ul class="sidenav collapsible" id="mobile-demo">
     <li>
       <div class="collapsible-header">Add Name</div>
       <div class="collapsible-body">
-         <form action="/addName" method="post" id="addName">
+        <form action="/addName" method="post" id="addName">
           <p>Enter your name</p>
           <input type="text" name="username" class="name">
         </form>
       </div>
     </li>
-    <li><div class="divider"></div></li>
     <li>
-    <div class="collapsible-header">Leaderboard</div>
+      <div class="divider"></div>
+    </li>
+    <li>
+      <div class="collapsible-header">Leaderboard</div>
       <div class="collapsible-body">
-         <p>Leader Board</p>
+        <p>Leader Board</p>
         <p class="leaderUser"> Name - Score</p>
         <ol class="leaderBoard">
           {{#each leaderBoard}}
@@ -54,15 +56,17 @@
         </ol>
       </div>
     </li>
-    <li><div class="divider"></div></li>
+    <li>
+      <div class="divider"></div>
+    </li>
   </ul>
 
   {{{body}}}
 
-<div class="row center-align btns">
+  <div class="row center-align btns">
     <div class="col m12 s12 hide-on-large-only scoreDivMob"></div>
     <input id="startBtn" type="button" value="Start">
-</div>
+  </div>
 
 
   <footer class="center-align">

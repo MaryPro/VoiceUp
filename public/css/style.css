@@ -12,6 +12,8 @@ input[type=text]:not(.browser-default) {
   border: 2px solid whitesmoke;
   border-radius: 5px;
   color: beige;
+  font-size: larger;
+  text-align: center;
 }
 nav{
   background-color:#141423;

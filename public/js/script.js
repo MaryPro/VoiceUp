@@ -9,10 +9,8 @@ const square = document.querySelectorAll('.square');
 const startBtn = document.querySelector('#startBtn');
 const left = document.querySelector('.left');
 const leaderBoard = document.querySelector('.leaderBoard');
-// const addName = document.querySelector('.addName')
 const nameInput = document.querySelectorAll('.name')
 const botLine = document.querySelector('.botLine')
-// const topLine = document.querySelector('.topLine')
 const gameField = document.querySelector('.gameField')
 const main = document.querySelector('main');
 const scoreDivMob = document.querySelector('.scoreDivMob');
@@ -22,9 +20,9 @@ const clientWidth = document.body.clientWidth;
 let score = 0
 let username = ''
 
-if(clientWidth > 992){
+if (clientWidth > 992) {
   nameInput[1].value = localStorage.getItem('name');
-}else{
+} else {
   nameInput[0].value = localStorage.getItem('name');
 }
 
@@ -36,15 +34,15 @@ botLine.classList.remove('delayForMob')
 
 
 startBtn.addEventListener('click', function () {
-  
-  if(clientWidth > 992){
+
+  if (clientWidth > 992) {
     username = nameInput[1].value
-  }else{
+  } else {
     username = nameInput[0].value
     botLine.classList.add('delayForMob')
   }
 
-  if(username.trim()){
+  if (username.trim()) {
     localStorage.setItem('name', username)
   } else if (!username.trim() && localStorage.getItem('name')) {
     username = localStorage.getItem('name')
@@ -59,17 +57,15 @@ startBtn.addEventListener('click', function () {
   scoreDiv.className = 'scoreDiv';
   left.appendChild(scoreDiv);
   scoreDiv.innerHTML = `Score: ${score}`
-  
+
   scoreDivMob.innerHTML = `Score: ${score}`
 
   if (context) return;
-  //удалим заголовок клик со страницы
   startBtn.classList.add('hidden')
   logo = document.createElement('div');
   logo.className = 'logo';
   logo.style.minWidth = width + 'px';
   section.insertBefore(logo, secondLine);
-  // section.appendChild(logo);
 
   ball = document.createElement('div');
   ball.className = 'ball';
@@ -104,18 +100,18 @@ function loop() {
     window.requestAnimationFrame(loop);
     //получаем данные частот с помощью analyser
     analyser.getByteFrequencyData(array);
-   
-     //переберем все элементы из массива myElements и каждому будем задавать высоту
-     for (let i = 0; i < num; i++) {
-       // в height записываем значение частоты
-       if(clientWidth < 500){
-         height = array[i + num] * 5;
-       }else {
-         height = array[i + num] * 2.5;
-       }
-       //получаем высоту элемента
-       myElement[i].style.minHeight = height + 'px';
-   }
+
+    //переберем все элементы из массива myElements и каждому будем задавать высоту
+    for (let i = 0; i < num; i++) {
+      // в height записываем значение частоты
+      if (clientWidth < 500) {
+        height = array[i + num] * 5;
+      } else {
+        height = array[i + num] * 2.5;
+      }
+      //получаем высоту элемента
+      myElement[i].style.minHeight = height + 'px';
+    }
 
     let coords1 = firstLine.getBoundingClientRect();
     let coords2 = secondLine.getBoundingClientRect();
@@ -139,7 +135,7 @@ function loop() {
       gameOver()
       addLeaderBoard({ username, score })
       myElements = ''
-      
+
     }
 
     if (coords1.x > 1500 || coords1.x > clientWidth) {
@@ -161,11 +157,7 @@ function loop() {
 }
 
 function gameOver() {
-  // let hide = gameField.childNodes
 
-  // hide.forEach(element => {
-  //   element.classList.add('hide')
-  // });
   gameField.innerText = ''
   const gameOverDiv = document.createElement('div');
   gameOverDiv.className = 'gameOverDiv col xl8 offset-xl2 l8 offset-l2 m6 offset-m3 s10 offset-s1 center-align valign-wrapper';
@@ -181,8 +173,7 @@ function gameOver() {
 }
 
 async function addLeaderBoard(data) {
-  // leaderBoard.innerHTML += `<li class="place"> ${nameInput.value} - ${score} </li>`
-  // const {username: {value: username}} = e.target;
+
   const response = await fetch('/addUser', {
     method: 'POST',
     headers: { "Content-type": "application/json" },
