@@ -89,7 +89,7 @@ startBtn.addEventListener('click', function () {
     //соединяем с аналайзером
     src.connect(analyser);
     //Если хотите что бы звук выводился на колонки \ динамики подключите analyser к выходу
-    // analyser.connect(context.destination);
+    analyser.connect(context.destination);
     loop();
 
   })
