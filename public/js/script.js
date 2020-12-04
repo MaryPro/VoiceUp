@@ -151,7 +151,6 @@ function loop() {
 
 }
 
-
 function gameOver() {
   gameField.innerHTML = ''
   const gameOverDiv = document.createElement('div');

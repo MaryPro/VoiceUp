@@ -155,6 +155,6 @@ nav{
   }
   
   .triangle {
-    animation: moveRightLeftSmall 3s linear infinite ;
+    animation: moveRightLeftSmall 3s linear 5s infinite ;
 }
 }
