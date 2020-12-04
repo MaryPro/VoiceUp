@@ -10,7 +10,7 @@ const startBtn = document.querySelector('#startBtn');
 const left = document.querySelector('.left');
 const leaderBoard = document.querySelector('.leaderBoard');
 // const addName = document.querySelector('.addName')
-const nameInput = document.querySelector('.name')
+const nameInput = document.querySelectorAll('.name')
 const botLine = document.querySelector('.botLine')
 // const topLine = document.querySelector('.topLine')
 const gameField = document.querySelector('.gameField')
@@ -19,11 +19,14 @@ const scoreDivMob = document.querySelector('.scoreDivMob');
 const btns = document.querySelector('.btns');
 
 const clientWidth = document.body.clientWidth;
-
-
-
 let score = 0
 let username = ''
+
+if(clientWidth > 992){
+  nameInput[1].value = localStorage.getItem('name');
+}else{
+  nameInput[0].value = localStorage.getItem('name');
+}
 
 //количество столбцов
 num = 1;
@@ -31,10 +34,20 @@ array = new Uint8Array(num * 2);
 width = 10;
 
 startBtn.addEventListener('click', function () {
-  username = nameInput.value
-  if(username===''){
+  if(clientWidth > 992){
+    username = nameInput[1].value
+  }else{
+    username = nameInput[0].value
+  }
+
+  if(username.trim()){
+    localStorage.setItem('name', username)
+  } else if (!username.trim() && localStorage.getItem('name')) {
+    username = localStorage.getItem('name')
+  } else {
     username = 'NoName'
   }
+
   left.innerText = ''
   left.innerText += `Name: ${username}`
 
@@ -91,7 +104,7 @@ function loop() {
     //переберем все элементы из массива myElements и каждому будем задавать высоту
     for (let i = 0; i < num; i++) {
       // в height записываем значение частоты
-      height = array[i + num] * 3;
+      height = array[i + num] * 2.5;
       //получаем высоту элемента
       myElements[i].style.minHeight = height + 'px';
     }
