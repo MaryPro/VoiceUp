@@ -1,4 +1,4 @@
-let num, array, width, context, logo, myElements, analyser, src, height, ball, ballHeight, scoreDiv;
+let num, array, width, context, logo, myElement, analyser, src, height, ball, ballHeight, scoreDiv;
 
 const body = document.querySelector('body');
 const section = document.querySelector('section');
@@ -32,14 +32,16 @@ if(clientWidth > 992){
 num = 1;
 array = new Uint8Array(num * 2);
 width = 10;
+botLine.classList.remove('delayForMob')
+
 
 startBtn.addEventListener('click', function () {
-  botLine.classList.add('delayForMob')
   
   if(clientWidth > 992){
     username = nameInput[1].value
   }else{
     username = nameInput[0].value
+    botLine.classList.add('delayForMob')
   }
 
   if(username.trim()){
@@ -76,7 +78,7 @@ startBtn.addEventListener('click', function () {
   logo.appendChild(ball);
 
   //поместим весь список элементов в новую переменную
-  myElements = document.getElementsByClassName('logo');
+  myElement = document.getElementsByClassName('logo');
   //создадим аудиоконтекст
   context = new AudioContext();
   //создаем аналайзер
@@ -93,12 +95,11 @@ startBtn.addEventListener('click', function () {
     //Если хотите что бы звук выводился на колонки \ динамики подключите analyser к выходу
     analyser.connect(context.destination);
     loop();
-
   })
 })
 
 function loop() {
-  if (myElements) {
+  if (myElement) {
     //создаем рекурсию, будет создавать себя примерно 60 раз в секунду
     window.requestAnimationFrame(loop);
     //получаем данные частот с помощью analyser
@@ -106,9 +107,13 @@ function loop() {
     //переберем все элементы из массива myElements и каждому будем задавать высоту
     for (let i = 0; i < num; i++) {
       // в height записываем значение частоты
-      height = array[i + num] * 2.5;
+      if(clientWidth < 500){
+        height = array[i + num] * 5;
+      }else {
+        height = array[i + num] * 2.5;
+      }
       //получаем высоту элемента
-      myElements[i].style.minHeight = height + 'px';
+      myElement[i].style.minHeight = height + 'px';
     }
 
     let coords1 = firstLine.getBoundingClientRect();
@@ -133,6 +138,7 @@ function loop() {
       gameOver()
       addLeaderBoard({ username, score })
       myElements = ''
+      
     }
 
     if (coords1.x > 1500 || coords1.x > clientWidth) {
@@ -154,7 +160,6 @@ function loop() {
 }
 
 function gameOver() {
-  botLine.classList.remove('delayForMob')
   gameField.innerHTML = ''
   const gameOverDiv = document.createElement('div');
   gameOverDiv.className = 'gameOverDiv col xl8 offset-xl2 l8 offset-l2 m6 offset-m3 s10 offset-s1 center-align valign-wrapper';
@@ -167,7 +172,6 @@ function gameOver() {
   startBtn.addEventListener('click', () => {
     location.reload()
   })
-
 }
 
 async function addLeaderBoard(data) {
