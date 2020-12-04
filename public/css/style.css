@@ -43,11 +43,14 @@ nav{
 
 .gameOverDiv {
   font-size: 7vw;
-  text-align: center;
+  /* text-align: center; */
   border: 2px solid whitesmoke;
   border-radius: 20px;
   vertical-align: middle;
   padding: 10px;
+}
+p < .gameOverDiv {
+  text-align: center;
 }
 
 .scoreDivMob {
@@ -144,7 +147,11 @@ nav{
 
 
 .hidden{
-  visibility: hidden;
+  visibility: hidden;  
+}
+
+.hide {
+  display: none;
 }
 
 @media (max-width: 1500px) {

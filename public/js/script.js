@@ -93,7 +93,7 @@ startBtn.addEventListener('click', function () {
     //соединяем с аналайзером
     src.connect(analyser);
     //Если хотите что бы звук выводился на колонки \ динамики подключите analyser к выходу
-    analyser.connect(context.destination);
+    // analyser.connect(context.destination);
     loop();
   })
 })
@@ -104,17 +104,18 @@ function loop() {
     window.requestAnimationFrame(loop);
     //получаем данные частот с помощью analyser
     analyser.getByteFrequencyData(array);
-    //переберем все элементы из массива myElements и каждому будем задавать высоту
-    for (let i = 0; i < num; i++) {
-      // в height записываем значение частоты
-      if(clientWidth < 500){
-        height = array[i + num] * 5;
-      }else {
-        height = array[i + num] * 2.5;
-      }
-      //получаем высоту элемента
-      myElement[i].style.minHeight = height + 'px';
-    }
+   
+     //переберем все элементы из массива myElements и каждому будем задавать высоту
+     for (let i = 0; i < num; i++) {
+       // в height записываем значение частоты
+       if(clientWidth < 500){
+         height = array[i + num] * 5;
+       }else {
+         height = array[i + num] * 2.5;
+       }
+       //получаем высоту элемента
+       myElement[i].style.minHeight = height + 'px';
+   }
 
     let coords1 = firstLine.getBoundingClientRect();
     let coords2 = secondLine.getBoundingClientRect();
@@ -160,12 +161,17 @@ function loop() {
 }
 
 function gameOver() {
-  gameField.innerHTML = ''
+  // let hide = gameField.childNodes
+
+  // hide.forEach(element => {
+  //   element.classList.add('hide')
+  // });
+  gameField.innerText = ''
   const gameOverDiv = document.createElement('div');
   gameOverDiv.className = 'gameOverDiv col xl8 offset-xl2 l8 offset-l2 m6 offset-m3 s10 offset-s1 center-align valign-wrapper';
   gameField.appendChild(gameOverDiv);
-  gameOverDiv.innerText = `GAME OVER
-  Your score: ${score}
+  gameOverDiv.innerHTML = `<p>GAME OVER </br>
+  Your score: ${score}</p>
   `
   startBtn.classList.remove('hidden')
   startBtn.value = 'New Game'
