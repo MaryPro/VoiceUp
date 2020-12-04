@@ -31,7 +31,6 @@ array = new Uint8Array(num*2);
 width = 10;
 
 startBtn.addEventListener('click', function(){
-console.log(clientWidth);
   username = nameInput.value
   left.innerText = ''
   left.innerText += `Name: ${username}`
@@ -88,7 +87,7 @@ function loop() {
     //переберем все элементы из массива myElements и каждому будем задавать высоту
       for(let i = 0 ; i < num ; i++){
         // в height записываем значение частоты
-        height = array[i+num]*2.5;
+        height = array[i+num]*3;
         //получаем высоту элемента
         myElements[i].style.minHeight = height+'px';
       }
@@ -142,19 +141,12 @@ function gameOver() {
   gameOverDiv.innerText = `GAME OVER
   Your score: ${score}
   `
-  const startNewGameBtn = document.createElement('input');
-  startNewGameBtn.className = 'btn';
-  startNewGameBtn.id = 'newGameBtn';
-  startNewGameBtn.value = 'New Game'
-  startNewGameBtn.type = 'button'
-  startNewGameBtn.onclick = 'location.reload()'
-  btns.appendChild(startNewGameBtn);
+  startBtn.classList.remove('hidden')
+  startBtn.value = 'New Game'
+  startBtn.addEventListener('click', ()=>{
+    location.reload()
+  })
 
-  // const playAgainBtn = document.createElement('input');
-  // playAgainBtn.className = 'btn';
-  // playAgainBtn.value = 'Play Again'
-  // playAgainBtn.type = 'button'
-  // main.appendChild(playAgainBtn);
 }
 
 startBtn.addEventListener('click', function(){
