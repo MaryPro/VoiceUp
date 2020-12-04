@@ -27,11 +27,14 @@ let username = ''
 
 //количество столбцов
 num = 1;
-array = new Uint8Array(num*2);
+array = new Uint8Array(num * 2);
 width = 10;
 
-startBtn.addEventListener('click', function(){
+startBtn.addEventListener('click', function () {
   username = nameInput.value
+  if(username===''){
+    username = 'NoName'
+  }
   left.innerText = ''
   left.innerText += `Name: ${username}`
 
@@ -39,58 +42,59 @@ startBtn.addEventListener('click', function(){
   scoreDiv.className = 'scoreDiv';
   left.appendChild(scoreDiv);
   scoreDiv.innerHTML = `Score: ${score}`
-  scoreDivMob.innerHTML =  `Score: ${score}`
+  
+  scoreDivMob.innerHTML = `Score: ${score}`
 
-    if(context) return;
+  if (context) return;
   //удалим заголовок клик со страницы
   startBtn.classList.add('hidden')
-      logo = document.createElement('div');
-      logo.className = 'logo';
-      logo.style.minWidth = width+'px';
-      section.insertBefore(logo, secondLine);
-      // section.appendChild(logo);
+  logo = document.createElement('div');
+  logo.className = 'logo';
+  logo.style.minWidth = width + 'px';
+  section.insertBefore(logo, secondLine);
+  // section.appendChild(logo);
 
-      ball = document.createElement('div');
-      ball.className = 'ball';
-      ball.style.background = 'blue';
-      // ball.style.minWidth = width+'px';
-      logo.appendChild(ball);
-     
-    //поместим весь список элементов в новую переменную
-    myElements = document.getElementsByClassName('logo');
-    //создадим аудиоконтекст
-    context = new AudioContext();
-    //создаем аналайзер
-    analyser = context.createAnalyser();
-    //делаем запрос на захват звука с микрофона
-    navigator.mediaDevices.getUserMedia({
-      //нужно аудио - выставляем на тру
-      audio: true
-      // в случае успеха передаем поток в переменную stream
-    }).then(stream => {
-      src = context.createMediaStreamSource(stream);
-      //соединяем с аналайзером
-      src.connect(analyser);
-      //Если хотите что бы звук выводился на колонки \ динамики подключите analyser к выходу
-      // analyser.connect(context.destination);
-      loop();
+  ball = document.createElement('div');
+  ball.className = 'ball';
+  ball.style.background = 'blue';
+  // ball.style.minWidth = width+'px';
+  logo.appendChild(ball);
 
-    })
+  //поместим весь список элементов в новую переменную
+  myElements = document.getElementsByClassName('logo');
+  //создадим аудиоконтекст
+  context = new AudioContext();
+  //создаем аналайзер
+  analyser = context.createAnalyser();
+  //делаем запрос на захват звука с микрофона
+  navigator.mediaDevices.getUserMedia({
+    //нужно аудио - выставляем на тру
+    audio: true
+    // в случае успеха передаем поток в переменную stream
+  }).then(stream => {
+    src = context.createMediaStreamSource(stream);
+    //соединяем с аналайзером
+    src.connect(analyser);
+    //Если хотите что бы звук выводился на колонки \ динамики подключите analyser к выходу
+    // analyser.connect(context.destination);
+    loop();
+
+  })
 })
 
 function loop() {
-  if(myElements){
-  //создаем рекурсию, будет создавать себя примерно 60 раз в секунду
+  if (myElements) {
+    //создаем рекурсию, будет создавать себя примерно 60 раз в секунду
     window.requestAnimationFrame(loop);
     //получаем данные частот с помощью analyser
     analyser.getByteFrequencyData(array);
     //переберем все элементы из массива myElements и каждому будем задавать высоту
-      for(let i = 0 ; i < num ; i++){
-        // в height записываем значение частоты
-        height = array[i+num]*3;
-        //получаем высоту элемента
-        myElements[i].style.minHeight = height+'px';
-      }
+    for (let i = 0; i < num; i++) {
+      // в height записываем значение частоты
+      height = array[i + num] * 3;
+      //получаем высоту элемента
+      myElements[i].style.minHeight = height + 'px';
+    }
 
     let coords1 = firstLine.getBoundingClientRect();
     let coords2 = secondLine.getBoundingClientRect();
@@ -99,27 +103,27 @@ function loop() {
     let botLineCoords = botLine.getBoundingClientRect();
     // let topLineCoords = topLine.getBoundingClientRect();
 
-  //проверка на вхождение в зону
+    //проверка на вхождение в зону
 
-    if( coordsBall.x >= coords1.x-70 && coordsBall.x <= coords1.x+70 && coordsBall.y >= coords1.y-70 && coordsBall.y <= coords1.y+100){
+    if (coordsBall.x >= coords1.x - 70 && coordsBall.x <= coords1.x + 70 && coordsBall.y >= coords1.y - 70 && coordsBall.y <= coords1.y + 100) {
       firstLine.classList.add('hidden')
       score++
-    }else if( coordsBall.x >= coords2.x-70 && coordsBall.x <= coords2.x+70 && coordsBall.y >= coords2.y-70 && coordsBall.y <= coords2.y+100){
+    } else if (coordsBall.x >= coords2.x - 70 && coordsBall.x <= coords2.x + 70 && coordsBall.y >= coords2.y - 70 && coordsBall.y <= coords2.y + 100) {
       secondLine.classList.add('hidden')
       score++
-    }else if( coordsBall.x >= coords3.x-70 && coordsBall.x <= coords3.x+70 && coordsBall.y >= coords3.y-70 && coordsBall.y <= coords3.y+100){
+    } else if (coordsBall.x >= coords3.x - 70 && coordsBall.x <= coords3.x + 70 && coordsBall.y >= coords3.y - 70 && coordsBall.y <= coords3.y + 100) {
       thirdLine.classList.add('hidden')
       score++
-    }else if(coordsBall.x >= botLineCoords.x-70 && coordsBall.x <= botLineCoords.x+70 && coordsBall.y >= botLineCoords.y-70 && coordsBall.y <= botLineCoords.y+50){
-      gameOver() 
-      addLeaderBoard({username, score})
+    } else if (coordsBall.x >= botLineCoords.x - 70 && coordsBall.x <= botLineCoords.x + 70 && coordsBall.y >= botLineCoords.y - 70 && coordsBall.y <= botLineCoords.y + 50) {
+      gameOver()
+      addLeaderBoard({ username, score })
       myElements = ''
     }
 
     if (coords1.x > 1500 || coords1.x > clientWidth) {
       firstLine.classList.remove('hidden')
     }
-    if(coords2.x > 1500  || coords2.x > clientWidth) {
+    if (coords2.x > 1500 || coords2.x > clientWidth) {
       secondLine.classList.remove('hidden')
     }
     else if (coords3.x > 1500 || coords3.x > clientWidth) {
@@ -127,9 +131,11 @@ function loop() {
     }
 
     scoreDiv.innerText = `Score: ${score}`
-    scoreDivMob.innerText = `Score: ${score}`
-    }
-    
+    scoreDivMob.innerHTML = `Name: ${username}`
+    scoreDivMob.innerText += `\n Score: ${score}`
+
+  }
+
 }
 
 
@@ -143,23 +149,19 @@ function gameOver() {
   `
   startBtn.classList.remove('hidden')
   startBtn.value = 'New Game'
-  startBtn.addEventListener('click', ()=>{
+  startBtn.addEventListener('click', () => {
     location.reload()
   })
 
 }
 
-startBtn.addEventListener('click', function(){
-
-})
-
 async function addLeaderBoard(data) {
   // leaderBoard.innerHTML += `<li class="place"> ${nameInput.value} - ${score} </li>`
   // const {username: {value: username}} = e.target;
   const response = await fetch('/addUser', {
-      method: 'POST',
-      headers: {"Content-type": "application/json"},
-      body: JSON.stringify(data)
+    method: 'POST',
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(data)
   })
-    const addToLeaderBoard = await response.json()
+  const addToLeaderBoard = await response.json()
 }
