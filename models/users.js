@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 
 const userSchema = new mongoose.Schema({
-  username: String,
+  username: {type: String, default: 'NoName'},
   score: Number,
   date: {type: Date, default: Date.now()}
 })

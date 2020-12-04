@@ -24,7 +24,10 @@ router.post('/addName', async (req, res) => {
 })
 
 router.post('/addUser', async (req, res) => {
-  const {username, score} = req.body
+  let {username, score} = req.body
+  if(username === ''){
+    username = 'NoName'
+  }
   const newUser = new User({
     username,
     score

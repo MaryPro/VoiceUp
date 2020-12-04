@@ -1,32 +1,31 @@
-<div class ="game">
-  <div class="left">
-    <form action="/addName" method="post" id="addName">
-      <p>Enter your name</p> 
-      <input type="text" name="username" class="name">
-      {{!-- <button class = "addNameBtn">Ok</button> --}}
-    </form>
+  <div class="row">
+    <div class="col col xl2 l2 hide-on-med-and-down left">
+        <form action="/addName" method="post" id="addName">
+          <p>Enter your name</p>
+          <input type="text" name="username" class="name">
+        </form>
+    </div>
 
-   
-  </div>
-  <section class="gameField">
+    <div class="col xl8 l8 m12 s12">
 
-    <div class="triangle topLine"></div>
-    <div class="square firstLine"></div>
-    <div class="square secondLine"></div>
-    <div class="square thirdLine"></div>
-    <div class="triangle botLine"></div>
+      <section class="gameField" id="block">
 
-  </section>
-  <div class="right">
-    <p>Leader Board</p>
+        <div class="square firstLine"></div>
+        <div class="square secondLine"></div>
+        <div class="square thirdLine"></div>
+        <div class="triangle botLine"></div>
+
+      </section>
+    </div>
+
+    <div class="col xl2 l2 center-align hide-on-med-and-down right">
+      <p>Leader Board</p>
       <p class="leaderUser"> Name - Score</p>
-    <ol class="leaderBoard">
-    {{#each leaderBoard}}
-      <li class="leaderUser"> {{this.username}} - {{this.score}}</li>
-    {{/each}}
-    </ol>
-  </div>
-</div>
+      <ol class="leaderBoard">
+        {{#each leaderBoard}}
+        <li class="leaderUser"> {{this.username}} - {{this.score}}</li>
+        {{/each}}
+      </ol>
+    </div>
 
-  <input id="startBtn" type="button" value="Start">
 </div>

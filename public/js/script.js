@@ -15,6 +15,12 @@ const botLine = document.querySelector('.botLine')
 // const topLine = document.querySelector('.topLine')
 const gameField = document.querySelector('.gameField')
 const main = document.querySelector('main');
+const scoreDivMob = document.querySelector('.scoreDivMob');
+const btns = document.querySelector('.btns');
+
+const clientWidth = document.body.clientWidth;
+
+
 
 let score = 0
 let username = ''
@@ -25,6 +31,7 @@ array = new Uint8Array(num*2);
 width = 10;
 
 startBtn.addEventListener('click', function(){
+console.log(clientWidth);
   username = nameInput.value
   left.innerText = ''
   left.innerText += `Name: ${username}`
@@ -33,14 +40,16 @@ startBtn.addEventListener('click', function(){
   scoreDiv.className = 'scoreDiv';
   left.appendChild(scoreDiv);
   scoreDiv.innerHTML = `Score: ${score}`
-  
+  scoreDivMob.innerHTML =  `Score: ${score}`
+
     if(context) return;
   //удалим заголовок клик со страницы
   startBtn.classList.add('hidden')
       logo = document.createElement('div');
       logo.className = 'logo';
       logo.style.minWidth = width+'px';
-      section.appendChild(logo);
+      section.insertBefore(logo, secondLine);
+      // section.appendChild(logo);
 
       ball = document.createElement('div');
       ball.className = 'ball';
@@ -108,17 +117,18 @@ function loop() {
       myElements = ''
     }
 
-    if (coords1.x > 1500) {
+    if (coords1.x > 1500 || coords1.x > clientWidth) {
       firstLine.classList.remove('hidden')
     }
-    if(coords2.x > 1500) {
+    if(coords2.x > 1500  || coords2.x > clientWidth) {
       secondLine.classList.remove('hidden')
     }
-    else if (coords3.x > 1500) {
+    else if (coords3.x > 1500 || coords3.x > clientWidth) {
       thirdLine.classList.remove('hidden')
     }
 
     scoreDiv.innerText = `Score: ${score}`
+    scoreDivMob.innerText = `Score: ${score}`
     }
     
 }
@@ -127,17 +137,18 @@ function loop() {
 function gameOver() {
   gameField.innerHTML = ''
   const gameOverDiv = document.createElement('div');
-  gameOverDiv.className = 'gameOverDiv';
+  gameOverDiv.className = 'gameOverDiv col xl8 offset-xl2 l8 offset-l2 m6 offset-m3 s10 offset-s1 center-align valign-wrapper';
   gameField.appendChild(gameOverDiv);
   gameOverDiv.innerText = `GAME OVER
   Your score: ${score}
   `
-  // const startNewGameBtn = document.createElement('input');
-  // startNewGameBtn.className = 'btn';
-  // startNewGameBtn.value = 'Start New Game'
-  // startNewGameBtn.type = 'button'
-  // startNewGameBtn.onclick = 'startNewGame()'
-  // main.appendChild(startNewGameBtn);
+  const startNewGameBtn = document.createElement('input');
+  startNewGameBtn.className = 'btn';
+  startNewGameBtn.id = 'newGameBtn';
+  startNewGameBtn.value = 'New Game'
+  startNewGameBtn.type = 'button'
+  startNewGameBtn.onclick = 'location.reload()'
+  btns.appendChild(startNewGameBtn);
 
   // const playAgainBtn = document.createElement('input');
   // playAgainBtn.className = 'btn';
@@ -145,6 +156,10 @@ function gameOver() {
   // playAgainBtn.type = 'button'
   // main.appendChild(playAgainBtn);
 }
+
+startBtn.addEventListener('click', function(){
+
+})
 
 async function addLeaderBoard(data) {
   // leaderBoard.innerHTML += `<li class="place"> ${nameInput.value} - ${score} </li>`
@@ -156,32 +171,3 @@ async function addLeaderBoard(data) {
   })
     const addToLeaderBoard = await response.json()
 }
-
-// рандомное время появления анимации
-// let randomTime = Math.floor(Math.random()*7000)+2000
-
-// function animationSquare () {
-//     setInterval(() => {
-//     square = document.createElement('div');
-//     square.className = 'square firstLine'
-//     section.appendChild(square);
-       
-//   }, randomTime)
-
-//   setInterval(() => {
-//     square = document.createElement('div');
-//     square.className = 'square secondLine'
-//     section.appendChild(square);
-   
-//   }, randomTime)
-// }
-
-// animationSquare ()
-
-// function startNewGame () {
-//   location.reload()
-// }
-
-// function playAgain () {
-
-// }
