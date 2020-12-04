@@ -104,7 +104,7 @@ nav{
 }
 
 .delayForMob {
-  animation: moveTriangleSmall 5s linear infinite ;
+  animation: moveTriangleSmall 3s linear infinite ;
 }
 
 @keyframes moveRightLeftLarge { 
