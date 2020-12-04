@@ -34,6 +34,8 @@ array = new Uint8Array(num * 2);
 width = 10;
 
 startBtn.addEventListener('click', function () {
+  botLine.classList.add('delayForMob')
+  
   if(clientWidth > 992){
     username = nameInput[1].value
   }else{
@@ -152,6 +154,7 @@ function loop() {
 }
 
 function gameOver() {
+  botLine.classList.remove('delayForMob')
   gameField.innerHTML = ''
   const gameOverDiv = document.createElement('div');
   gameOverDiv.className = 'gameOverDiv col xl8 offset-xl2 l8 offset-l2 m6 offset-m3 s10 offset-s1 center-align valign-wrapper';

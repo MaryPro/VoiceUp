@@ -103,6 +103,10 @@ nav{
   background: linear-gradient(to right bottom, transparent 50%, red 50%) left / 50% 100% no-repeat, linear-gradient(to left bottom, transparent 50%, red 50%) right / 50% 100% no-repeat;
 }
 
+.delayForMob {
+  animation: moveTriangleSmall 5s linear infinite ;
+}
+
 @keyframes moveRightLeftLarge { 
   0% { 
     transform: translateX(2300px); 
@@ -123,6 +127,21 @@ nav{
       transform: translateX(-400px); 
   } 
 }
+
+@keyframes moveTriangleSmall { 
+
+  0% { 
+      transform: translateX(500px); 
+  } 
+  50% { 
+    transform: translateX(500px); 
+  } 
+  
+  100% { 
+      transform: translateX(-400px); 
+  } 
+}
+
 
 .hidden{
   visibility: hidden;
@@ -155,6 +174,9 @@ nav{
   }
   
   .triangle {
-    animation: moveRightLeftSmall 3s linear 5s infinite ;
+    animation: moveRightLeftSmall 5s linear infinite ;
 }
+.gameField {
+  height: 450px;
+  }
 }
