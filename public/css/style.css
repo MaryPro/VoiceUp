@@ -188,8 +188,12 @@ p < .gameOverDiv {
   
   .triangle {
     animation: moveRightLeftSmall 5s linear infinite ;
-}
-.gameField {
+  }
+  .gameField {
   height: 450px;
+  }
+  
+  #logo {
+    position: absolute;
   }
 }
