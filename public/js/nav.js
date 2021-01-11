@@ -1,10 +1,9 @@
-// Initialize collapsible (uncomment the lines below if you use the dropdown variation)
-var collapsibleElem = document.querySelector('.collapsible');
-var collapsibleInstance = M.Collapsible.init(collapsibleElem);
+const collapsibleElem = document.querySelector('.collapsible');
+const collapsibleInstance = M.Collapsible.init(collapsibleElem);
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems);
+  const elems = document.querySelectorAll('.sidenav');
+  const instances = M.Sidenav.init(elems);
 
 });
