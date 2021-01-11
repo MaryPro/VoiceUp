@@ -1,14 +1,3 @@
-// const mongoose = require('mongoose')
-// const dotenv = require('dotenv')
-// dotenv.config()
-//  //url for bd (mongodb+srv://Admin:admin@cluster0.gj37x.mongodb.net/VoiceUp)
-// const connectionAddress = `mongodb+srv://${process.env.DATABASE_LOGIN}:${process.env.DATABASE_PASSWORD}@cluster0.gj37x.mongodb.net/${process.env.DATABASE_NAME}`
-// const dbConnect = () => {
-//   mongoose.connect(connectionAddress, { useNewUrlParser: true, useUnifiedTopology: true })
-// }
-
-// module.exports =  dbConnect
-
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 dotenv.config()

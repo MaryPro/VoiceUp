@@ -1,85 +1,41 @@
 body {
-  margin: 0%;
-  background: #141423;
-  height: 100%;
+  background-color: #141423;
   color: beige;
- 
+  margin: 0 ;
+  /* text-align: center; */
+}
+.sidenav, .sidenav .collapsible-body {
+  background-color: #141423;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; 
-  font-size: 20px;
+#logo {
+  position: relative;
 }
 
-.game {
-  margin: 0%;
-  background: #141423;
-  height: 100%;
-  display: flex;
-  align-items: center;
+input[type=text]:not(.browser-default) {
+  border: 2px solid whitesmoke;
+  border-radius: 5px;
+  color: beige;
+  font-size: larger;
+  text-align: center;
 }
-
-section {
+nav{
+  background-color:#141423;
+}
+.gameField {
   height: 500px;
-  width: 1200px;
+  min-width: 100px;
   display: flex;
   align-items: flex-end;
   border: 2px solid whitesmoke;
   border-radius: 20px;
-  margin: 30px 0px;
+  margin: 10px 0px;
   top: 400px;
   bottom: 400px;
+  overflow: hidden;
 }
 
-.gameOverDiv {
-  font-size: 100px;
-  text-align: center;
-  border: 2px solid whitesmoke;
-  border-radius: 20px;
-  margin-bottom: 150px; 
-  margin-left: 300px;
-  padding: 10px;
-}
-
-.left, .right {
-  font-size: 40px;
-  background: #141423;
-  min-width: 400px;
-  width: auto;
-  height: 500px;
-  z-index : 9999;
-  text-align: center;
-  padding: 10px;
-}
-
-.name {
-  background: #141423;
-  border: 2px solid whitesmoke;
-  border-radius: 5px;
-  height: 30px;
-  font-size: 20px;
-  color: beige;
-  text-align: center;
-
-}
-#addName {
-  margin: 10px;
-}
-
-.leaderBoard{
-  font-size: 30px;
-}
-
-.logo {
-  /* background-color: thistle; */
-  margin: 5px 10px;
-  width: 70px;
-}
-
-#startBtn, .btn {
+#startBtn, .btn, #newGameBtn {
   background: #141423;
   color: whitesmoke;
   cursor: pointer;
@@ -88,6 +44,32 @@ section {
   padding: 10px;
   border-radius: 10px;
   margin:10px;
+  height: fit-content;
+}
+
+.gameOverDiv {
+  font-size: 7vw;
+  border: 2px solid whitesmoke;
+  border-radius: 20px;
+  vertical-align: middle;
+  padding: 10px;
+}
+
+p < .gameOverDiv {
+  text-align: center;
+}
+
+.scoreDivMob {
+  font-size: 8vw;
+}
+
+.left, .right {
+  font-size: 30px;
+  background: #141423;
+  width: auto;
+  height: 500px;
+  z-index : 9999;
+  padding: 10px;
 }
 
 .ball {
@@ -101,60 +83,117 @@ section {
   width: 100px;
   height: 100px;
   border: 1px solid #000; 
+  position: relative;
 }
 
 .firstLine {
   margin-bottom: 350px;
   background: #FFC107;
-  animation: moveRightLeft 15s infinite;
+  animation: moveRightLeftLarge 11s linear infinite;
 }
 .secondLine {
   margin-bottom: 250px;
   background: #83db3c;
-  animation: moveRightLeft 10s linear infinite;;
+  animation: moveRightLeftLarge 7s linear infinite;;
 }
 .thirdLine {
   margin-bottom: 150px;
   background: #e478d5;
-  animation: moveRightLeft 13s infinite;
+  animation: moveRightLeftLarge 9s linear infinite;
 }
 
 .triangle {
   width: 100px;
   height: 100px;
-  animation: moveRightLeft 5s linear infinite ;
+  animation: moveRightLeftLarge 5s linear infinite ;
 }
-/* .topLine {
-  animation-timing-function: ease;
-  margin-bottom: 400px;
-  background: linear-gradient(to right top, transparent 50%, red 50%) left / 50% 100% no-repeat, linear-gradient(to left top, transparent 50%, red 50%) right / 50% 100% no-repeat;
-} */
 
 .botLine {
   background: linear-gradient(to right bottom, transparent 50%, red 50%) left / 50% 100% no-repeat, linear-gradient(to left bottom, transparent 50%, red 50%) right / 50% 100% no-repeat;
 }
 
-@keyframes moveRightLeft { 
-
-    0% { 
-        transform: translateX(1200px); 
-    } 
-    
-    100% { 
-        transform: translateX(-400px); 
-    } 
+.delayForMob {
+  animation: moveTriangleSmall 3s linear infinite ;
 }
+
+@keyframes moveRightLeftLarge { 
+  0% { 
+    transform: translateX(2300px); 
+} 
+
+100% { 
+    transform: translateX(-400px); 
+} 
+}
+
+@keyframes moveRightLeftSmall { 
+
+  0% { 
+      transform: translateX(500px); 
+  } 
+  
+  100% { 
+      transform: translateX(-400px); 
+  } 
+}
+
+@keyframes moveTriangleSmall { 
+
+  0% { 
+      transform: translateX(500px); 
+  } 
+  50% { 
+    transform: translateX(500px); 
+  } 
+  
+  100% { 
+      transform: translateX(-400px); 
+  } 
+}
+
 
 .hidden{
-  visibility: hidden;
+  visibility: hidden;  
 }
 
-footer {
-  letter-spacing: 3px;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  width: 100vw;
-  padding: 15px 0;
-  justify-content: center;
+.hide {
+  display: none;
+}
+
+@media (max-width: 1500px) {
+  .left, .right {
+    font-size: 20px;}
+}
+
+
+@media (min-width: 1140px) {
+  .scoreDivMob {
+    font-size: 30px;
+  }
+  .gameOverDiv {
+    font-size: 90px;
+  }
+}
+
+@media (max-width: 500px) {
+  .firstLine {
+    animation: moveRightLeftSmall 5s linear infinite;
+  }
+  .secondLine {
+    animation: moveRightLeftSmall 3s linear infinite;;
+  }
+  .thirdLine {
+    animation: moveRightLeftSmall 4s linear infinite;
+  }
+  
+  .triangle {
+    animation: moveRightLeftSmall 5s linear infinite ;
+  }
+  .gameField {
+  height: 450px;
+  }
+  
+  #logo {
+    position: absolute;
+  }
 }
