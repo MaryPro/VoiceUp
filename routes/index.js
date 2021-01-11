@@ -6,7 +6,7 @@ const router = express.Router()
 router.get('/', async (req,res) => {
   const allLeaders = await User.find({})
   const sortLeaderBoard = allLeaders.sort((a,b) => b.score-a.score)
-  //очищение бд
+ 
   sortLeaderBoard.slice(6).forEach(async(el) => {
     await User.findByIdAndDelete(el._id)
   })

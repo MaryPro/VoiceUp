@@ -8,6 +8,10 @@ body {
   background-color: #141423;
 }
 
+#logo {
+  position: relative;
+}
+
 input[type=text]:not(.browser-default) {
   border: 2px solid whitesmoke;
   border-radius: 5px;
@@ -45,12 +49,12 @@ nav{
 
 .gameOverDiv {
   font-size: 7vw;
-  /* text-align: center; */
   border: 2px solid whitesmoke;
   border-radius: 20px;
   vertical-align: middle;
   padding: 10px;
 }
+
 p < .gameOverDiv {
   text-align: center;
 }
